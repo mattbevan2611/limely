@@ -1,0 +1,1074 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@account-title-border-color: @color-gray-middle2;
+@account-table-border-bottom-color: @color-gray-middle1;
+@account-table-action-delete: @color-red12;
+
+@_password-default: @color-gray-light01;
+@_password-weak: #ffafae;
+@_password-medium: #ffd6b3;
+@_password-strong: #c5eeac;
+@_password-very-strong: #81b562;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .login-container {
+        .block {
+            &-new-customer {
+                .actions-toolbar {
+                    margin-top: 25px;
+                }
+            }
+
+            .block-title {
+                &:extend(.abs-login-block-title all);
+                .lib-font-size(18);
+            }
+        }
+
+        .fieldset {
+            .lib-form-hasrequired(bottom);
+
+            &:after {
+                margin-top: 35px;
+            }
+        }
+    }
+
+    .block-addresses-list {
+        .items.addresses {
+            > .item {
+                margin-bottom: @indent__base;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            .item.actions {
+                margin-top: @indent__xs;
+
+                .action {
+                    &:extend(.abs-account-actions all);
+                }
+            }
+        }
+
+        address {
+            &:extend(.abs-account-block-line-height all);
+        }
+    }
+
+    .form-address-edit {
+        .region_id {
+            display: none;
+        }
+
+        .actions-toolbar .action.primary {
+            &:extend(.abs-button-l all);
+        }
+    }
+
+    .form-edit-account {
+        .fieldset.password {
+            display: none;
+        }
+    }
+
+    .form-create-account {
+        .fieldset-fullname {
+            .fields {
+                .field {
+                    float: none;
+                }
+            }
+        }
+        .fieldset.create.account {
+            .lib-form-hasrequired(bottom);
+            &:after {
+                margin-top: 35px;
+            }
+        }
+    }
+
+    .form.password.forget {
+        .fieldset {
+            .lib-form-hasrequired(bottom);
+            &:after {
+                margin-top: 35px;
+            }
+        }
+    }
+
+    //  Full name fieldset
+    .fieldset {
+        .fullname {
+            > .label {
+                &:extend(.abs-visually-hidden all);
+            }
+        }
+    }
+
+    .box-billing-address,
+    .box-shipping-address,
+    .box-address-billing,
+    .box-address-shipping,
+    .box-information,
+    .box-newsletter {
+        .box-content {
+            &:extend(.abs-account-block-line-height all);
+        }
+    }
+
+    //  My account
+    .account {
+        .page-title-wrapper {
+            .page-title {
+                display: inline-block;
+            }
+        }
+
+        .messages {
+            margin-bottom: @indent__base;
+        }
+
+        .column.main {
+            margin-bottom: @indent__l;
+
+            h2 {
+                margin-top: 0;
+            }
+
+            .block:not(.widget) {
+                &:extend(.abs-account-blocks all);
+            }
+        }
+
+        .sidebar-additional {
+            margin-top: @indent__xl;
+        }
+
+        .table-wrapper {
+            .lib-css(margin-bottom, @indent__base);
+            border-bottom: 1px solid @account-table-border-bottom-color;
+            overflow-x: auto;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .legend {
+            &:extend(.abs-account-title all);
+        }
+    }
+
+    .account,
+    [class^='sales-guest-'],
+    .sales-guest-view {
+        .column.main {
+            .order-details-items {
+                .table-wrapper {
+                    .data.table {
+                        &:extend(.abs-table-striped all);
+                    }
+                }
+            }
+        }
+
+        .data.table {
+            .col.actions {
+                .action {
+                    &:extend(.abs-account-actions all);
+                    &.delete {
+                        .lib-css(color, @account-table-action-delete);
+                    }
+                }
+            }
+        }
+    }
+
+    //  Checkout address (create shipping address)
+    .field.street {
+        .field {
+            .label {
+                &:extend(.abs-visually-hidden all);
+            }
+        }
+    }
+
+    //
+    //  Blocks & Widgets
+    //  ---------------------------------------------
+
+    .block {
+        &:extend(.abs-margin-for-blocks-and-widgets all);
+        .column.main & {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .title {
+            strong {
+                .lib-heading(h4);
+                .column.main & {
+                }
+            }
+            display: block;
+            margin-bottom: @indent__s;
+        }
+
+        p {
+            &:last-child {
+                margin: 0;
+            }
+        }
+
+        .box-actions {
+            margin-top: @indent__xs;
+
+            .action {
+                &:extend(.abs-account-actions all);
+            }
+        }
+    }
+
+    //
+    //  Password Strength Meter
+    //  ---------------------------------------------
+
+    .field.password {
+        .control {
+            .lib-vendor-prefix-display();
+            .lib-vendor-prefix-flex-direction();
+
+            .mage-error {
+                .lib-vendor-prefix-order(2);
+            }
+
+            .input-text {
+                .lib-vendor-prefix-order(0);
+                z-index: 2;
+            }
+        }
+    }
+
+    .password-strength-meter {
+        background-color: @_password-default;
+        height: @form-element-input__height;
+        line-height: @form-element-input__height;
+        padding: @form-element-input__padding;
+        position: relative;
+        z-index: 1;
+
+        &:before {
+            content: '';
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            z-index: -1;
+        }
+
+        .password-none & {
+            &:before {
+                background-color: @_password-default;
+                width: 100%;
+            }
+        }
+
+        .password-weak & {
+            &:before {
+                background-color: @_password-weak;
+                width: 25%;
+            }
+        }
+
+        .password-medium & {
+            &:before {
+                background-color: @_password-medium;
+                width: 50%;
+            }
+        }
+
+        .password-strong & {
+            &:before {
+                background-color: @_password-strong;
+                width: 75%;
+            }
+        }
+
+        .password-very-strong & {
+            &:before {
+                background-color: @_password-very-strong;
+                width: 100%;
+            }
+        }
+    }
+
+    .control.captcha-image {
+        .lib-css(margin-top, @indent__s);
+
+        .captcha-img {
+            vertical-align: middle;
+        }
+    }
+
+    .account {
+        .data.table-return-items {
+            .qty {
+                .input-text {
+                    &:extend(.abs-input-qty all);
+                }
+            }
+        }
+    }
+
+    .order-products-toolbar,
+    .customer-addresses-toolbar {
+        position: relative;
+
+        .toolbar-amount {
+            position: relative;
+            text-align: center;
+        }
+        .pages {
+            position: relative;
+        }
+    }
+
+    .needAssistance {
+        background-color: #D8D8D8;
+        width: 100%;
+        display: block;
+        box-sizing: border-box;
+
+      .call-us {
+        color: #4A4A4A;
+        font-size: 22px;
+        font-weight: 400;
+        letter-spacing: 0.92px;
+        line-height: 26px;
+        text-align: left;
+        display:flex;
+        margin-bottom: 10px;
+
+        &:before {
+          font-style: normal;
+          font-variant: normal;
+          text-rendering: auto;
+          margin-right: 20px;
+          -webkit-font-smoothing: antialiased;
+          font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f095";
+          font-size: 24px;
+        }
+      }
+        .container {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 0;
+            box-sizing: border-box;
+            .columns {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                .column {
+                    box-sizing: border-box;
+                    display: flex;
+                    flex-direction: column;
+                    width: 50%;
+                    padding: 0 40px !important;
+                    @media(max-width: 768px) {
+                        width: 100%;
+                        display: block;
+                    }
+                    &:last-child {
+                        align-content: center;
+                        strong {
+                            position: relative;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #4A4A4A;
+                            font-size: 30px;
+                            font-weight: 700;
+                            line-height: 22px;
+                            text-align: left;
+                        }
+                    }
+                    strong {
+                        color: #4A4A4A;
+                        font-size: 22px;
+                        font-weight: 700;
+                        letter-spacing: 0.46px;
+                        text-align: left;
+                        display: block;
+                    }
+                    p {
+                        color: #4A4A4A;
+                        font-size: 14px;
+                        font-weight: 400;
+                        letter-spacing: 0.58px;
+                        line-height: 17px;
+                        text-align: left;
+                        display: block;
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .customer-account-create {
+        .needAssistance {
+            width: ~"calc(50% - 40px)";
+            display: inline-block;
+            float: left;
+            box-sizing: border-box;
+            margin-right: 40px;
+            margin-top: 50px;
+            padding: 0 0 30px;
+            @media (max-width: 1220px) {
+                width: 100%;
+                display: block;
+                margin-top: 0;
+            }
+            .container {
+                padding: 20px 0;
+                .columns {
+                    padding: 0;
+                    .column {
+                        width: 100%;
+                        strong {
+                            display: inline-block;
+                            width: fit-content;
+                            width: -moz-fit-content;
+                        }
+                        p {
+                            display: block;
+                            margin-bottom: 30px;
+                        }
+                    }
+                }
+            }
+        }
+        .form-create-account {
+            width: 50%;
+            display: inline-block;
+            float: left;
+            padding: 20px 40px;
+            box-sizing: border-box;
+            @media (max-width: 1220px) {
+                width: 100%;
+                display: block;
+            }
+            .legend {
+                border-bottom: @border-width__base solid @border-color__base;
+                span {
+                    color: #5D5D5D;
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 22px;
+                    text-align: left;
+                }
+            }
+            .account {
+                margin-bottom: 0;
+                &:after {
+                    margin-top: 10px !important;
+                }
+                .newsletter {
+                    label {
+                        color: #919191;
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 17px;
+                        text-align: left;
+                    }
+                    input {
+                        width: 20px;
+                        height: 20px;
+                        outline: none;
+                        position: relative;
+                        top: 5px;
+                        border: @border-width__base solid @border-color__base;
+                        -webkit-appearance: none;
+                        appearance: none;
+                        -moz-appearance: none;
+                        &:checked {
+                            position: relative;
+                            &:after {
+                                content: '\f00c';
+                                display: block;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                font-family: "Font Awesome 5 Free";
+                                font-weight: 900;
+                                color: #919191;
+                            }
+                        }
+                    }
+                }
+            }
+            .info {
+                margin-bottom: 0px;
+                .field-name-firstname,
+                .field-name-lastname {
+                    width: 50%;
+                    display: inline-block;
+                    box-sizing: border-box;
+                }
+
+                .field-name-firstname {
+                    padding: 0 10px 0 0;
+                }
+                .field-name-lastname {
+                    padding: 0 0 0 10px;
+                }
+            }
+            .actions-toolbar {
+                p {
+                    color: #919191;
+                    font-size: 14px;
+                    font-weight: 300;
+                    line-height: 17px;
+                    text-align: left;
+                    a {
+                        color: #919191;
+                        font-size: 14px;
+                        font-weight: 300;
+                        line-height: 17px;
+                        text-align: left;
+                        text-decoration: underline;
+                    }
+                }
+                button {
+                    padding: 12px 40px;
+                    max-width: 300px;
+                    width: 100%;
+                    height: auto;
+                    box-sizing: border-box;
+                    margin-top: 20px;
+                    span {
+                        color: #FFFFFF;
+                        font-size: 16px;
+                        font-weight: 700;
+                        letter-spacing: 1.33px;
+                        line-height: 19px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+
+    .customer-account-login,
+    .customer-account-create,
+    .customer-account-forgotpassword {
+        .page-main {
+            border: @border-width__base solid @border-color__base;
+            margin: 40px auto;
+            padding: 0;
+            .page-title-wrapper {
+                padding: 20px 40px;
+                border-bottom: @border-width__base solid @border-color__base;
+                .page-title {
+                    color: #4F4F4F;
+                    font-size: 36px;
+                    font-weight: 700;
+                    line-height: 43px;
+                    text-align: left;
+                    margin-bottom: 0;
+                }
+            }
+            .columns {
+                padding: 20px 0;
+                @media (max-width: 768px) {
+                    padding: 0 0 20px;
+                }
+                .column {
+                    padding: 0;
+                    @media (max-width: 768px) {
+                        margin: 0;
+                    }
+                    .block {
+                        padding: 20px 40px;
+                        box-sizing: border-box;
+                        width: 50%;
+                        margin: 0;
+                        @media (max-width: 768px) {
+                            width: 100%;
+                            display: block;
+                        }
+                        &.block-new-customer {
+                            ul {
+                                margin-top: 20px;
+                                padding-left: 20px;
+                                & > li {
+                                    color: #4F4F4F;
+                                    font-size: 16px;
+                                    font-weight: 300;
+                                    line-height: 21px;
+                                    text-align: left;
+                                    margin-bottom: 0;
+                                }
+                            }
+                            .block-content {
+                                .actions-toolbar {
+                                    margin-top: 0;
+                                    .primary {
+                                        a {
+                                            padding: 12px 40px;
+                                            max-width: 300px;
+                                            width: 100%;
+                                            height: auto;
+                                            box-sizing: border-box;
+                                            span {
+                                                color: #FFFFFF;
+                                                font-size: 16px;
+                                                font-weight: 700;
+                                                letter-spacing: 1.33px;
+                                                line-height: 19px;
+                                                text-align: center;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        &:first-child {
+                            border-right: @border-width__base solid @border-color__base;
+                            @media (max-width: 768px) {
+                               border-right: 0 none;
+                            }
+                        }
+                        .block-title {
+                            color: #4F4F4F;
+                            font-size: 22px;
+                            font-weight: 700;
+                            line-height: 26px;
+                            text-align: left;
+                            border-bottom: 0 none;
+                            strong {
+                                font-weight: 700;
+                            }
+                        }
+                        .block-content {
+                            .form-login {
+                                .control {
+                                    width: 100%;
+                                    input {
+                                        &.input-text {
+                                            padding: 15px 20px;
+                                            width: 100%;
+                                            color: #878787;
+                                            font-size: 18px;
+                                            font-weight: 400;
+                                            line-height: 22px;
+                                            text-align: left;
+                                            height: auto;
+                                        }
+                                    }
+                                }
+                                .actions-toolbar {
+                                    .secondary {
+                                        display: block;
+                                        width: 100%;
+                                        a {
+                                            color: #757575;
+                                            font-size: 16px;
+                                            font-weight: 400;
+                                            line-height: 19px;
+                                            text-align: left;
+                                            text-decoration: underline;
+                                            width: 100%;
+                                            margin-bottom: 20px;
+                                            display: block;
+                                        }
+                                    }
+                                    .primary {
+                                        button {
+                                            padding: 12px 40px;
+                                            max-width: 300px;
+                                            width: 100%;
+                                            height: auto;
+                                            box-sizing: border-box;
+                                            span {
+                                                color: #FFFFFF;
+                                                font-size: 16px;
+                                                font-weight: 700;
+                                                letter-spacing: 1.33px;
+                                                line-height: 19px;
+                                                text-align: center;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .customer-account-forgotpassword {
+        .page-main {
+            .columns {
+                padding: 20px 40px;
+                box-sizing: border-box;
+                .actions-toolbar {
+                    .primary {
+                        button {
+                            padding: 12px 40px;
+                            max-width: 300px;
+                            width: 100%;
+                            height: auto;
+                            box-sizing: border-box;
+                            span {
+                                color: #FFFFFF;
+                                font-size: 16px;
+                                font-weight: 700;
+                                letter-spacing: 1.33px;
+                                line-height: 19px;
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .login-container {
+        &:extend(.abs-add-clearfix-desktop all);
+
+        .block {
+            &:extend(.abs-blocks-2columns all);
+            &.login {
+                .actions-toolbar {
+                    > .primary {
+                        margin-bottom: 0;
+                        margin-right: @indent__l;
+                    }
+
+                    > .secondary {
+                        float: left;
+                    }
+                }
+            }
+        }
+
+        .fieldset {
+            > .field {
+                > .control {
+                    width: 80%;
+                }
+            }
+        }
+    }
+
+    .form-create-account {
+        .fieldset-fullname {
+            .fields {
+                display: table;
+                width: 100%;
+
+                .field {
+                    display: table-cell;
+
+                    + .field {
+                        padding-left: @indent__s;
+                    }
+                }
+            }
+
+            .field-name-prefix,
+            .field-name-suffix {
+                width: 50px;
+            }
+        }
+    }
+
+    .form.password.reset,
+    .form.send.confirmation,
+    .form.password.forget,
+    .form.create.account,
+    .form.search.advanced,
+    .form.form-orders-search {
+        min-width: 600px;
+        width: 50%;
+    }
+
+    //  My account
+    .account.page-layout-2columns-left {
+        .sidebar-main,
+        .sidebar-additional {
+            width: 22.3%;
+        }
+
+        .column.main {
+            width: 77.7%;
+        }
+
+        .sidebar-main {
+            .block {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .account {
+        .page-title-wrapper {
+            &:extend(.abs-add-clearfix-desktop all);
+        }
+
+        .column.main {
+            .block:not(.widget) {
+                .block-content {
+                    &:extend(.abs-add-clearfix-desktop all);
+
+                    .box {
+                        &:extend(.abs-blocks-2columns all);
+                    }
+                }
+            }
+        }
+
+        .data.table {
+            margin-bottom: 0;
+
+            .col {
+                &.actions {
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        .toolbar {
+            &:extend(.abs-pager-toolbar all);
+        }
+    }
+
+    .block-addresses-list {
+        .items.addresses {
+            &:extend(.abs-add-clearfix-desktop all);
+            font-size: 0;
+
+            > .item {
+                display: inline-block;
+                font-size: @font-size__base;
+                margin-bottom: @indent__base;
+                vertical-align: top;
+                width: 48%;
+
+                &:nth-last-child(1),
+                &:nth-last-child(2) {
+                    margin-bottom: 0;
+                }
+
+                &:nth-child(even) {
+                    margin-left: 4%;
+                }
+            }
+        }
+
+        address {
+            &:extend(.abs-account-block-font-size all);
+        }
+    }
+
+    .page-main {
+        .block {
+            &:extend(.abs-margin-for-blocks-and-widgets-desktop all);
+        }
+    }
+
+    .form-address-edit {
+        > .fieldset {
+            &:extend(.abs-blocks-2columns all);
+        }
+    }
+
+    .form-edit-account {
+        .fieldset {
+            &:extend(.abs-blocks-2columns all);
+
+            .fieldset {
+                margin-bottom: @indent__base;
+                width: 100%;
+            }
+        }
+    }
+
+    .box-billing-address,
+    .box-shipping-address,
+    .box-address-billing,
+    .box-address-shipping,
+    .box-information {
+        .box-content {
+            &:extend(.abs-account-block-font-size all);
+        }
+    }
+
+    .control.captcha-image {
+        .captcha-img {
+            margin: 0 @indent__s @indent__s 0;
+        }
+    }
+}
+
+//
+//  Mobile @screen__s
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .account {
+        .column.main,
+        .sidebar-additional {
+            margin: 0;
+            padding: 0;
+        }
+
+        .data.table {
+            &:extend(.abs-table-striped-mobile all);
+        }
+
+        .sidebar-main {
+            .account-nav {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+//
+//  Mobile @screen__m
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .login-container {
+        .fieldset {
+            &:after {
+                text-align: center;
+            }
+        }
+    }
+
+    .account {
+        .messages {
+            margin-bottom: 0;
+        }
+
+        .column.main {
+            .block:not(.widget) {
+                .block-title {
+                    &:extend(.abs-add-clearfix-mobile-m all);
+
+                    > .action {
+                        float: right;
+                        .lib-css(margin-top, @indent__xs);
+                    }
+                }
+
+                .block-content {
+                    .box {
+                        .lib-css(margin-bottom, @indent__base);
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .control.captcha-image {
+        .captcha-img {
+            display: block;
+            .lib-css(margin-bottom, @indent__s);
+        }
+    }
+
+    .customer-account-index {
+        .page-title-wrapper {
+            position: relative;
+        }
+    }
+
+    .form.search.advanced {
+        .field.price {
+            .with-addon {
+                .input-text {
+                    flex-basis: auto;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+
+    //Additional
+
+    .customer-account-login .page-main,
+    .customer-account-create .page-main,
+    .customer-account-forgotpassword .page-main {
+        border: 0 none;
+    }
+
+    .customer-account-login .page-main .page-title-wrapper,
+    .customer-account-create .page-main .page-title-wrapper,
+    .customer-account-forgotpassword .page-main .page-title-wrapper {
+        padding: 20px 10px;
+    }
+
+    .customer-account-login .page-main .columns .column .block,
+    .customer-account-create .page-main .columns .column .block,
+    .customer-account-forgotpassword .page-main .columns .column .block {
+        padding: 10px;
+    }
+
+    .customer-account-login .page-main .columns .column .block .block-content .form-login .actions-toolbar .primary button,
+    .customer-account-create .page-main .columns .column .block .block-content .form-login .actions-toolbar .primary button,
+    .customer-account-forgotpassword .page-main .columns .column .block .block-content .form-login .actions-toolbar .primary button,
+    .customer-account-login .page-main .columns .column .block.block-new-customer .block-content .actions-toolbar .primary a,
+    .customer-account-create .page-main .columns .column .block.block-new-customer .block-content .actions-toolbar .primary a,
+    .customer-account-forgotpassword .page-main .columns .column .block.block-new-customer .block-content .actions-toolbar .primary a {
+        float: left;
+    }
+
+    .customer-account-login .page-main .columns .column .block.block-new-customer .block-content .actions-toolbar .primary a span,
+    .customer-account-create .page-main .columns .column .block.block-new-customer .block-content .actions-toolbar .primary a span,
+    .customer-account-forgotpassword .page-main .columns .column .block.block-new-customer .block-content .actions-toolbar .primary a span {
+        display: block;
+        width: 100%;
+    }
+}
+
+.customer-account-login .page-main .page-title-wrapper .page-title,
+.customer-account-create .page-main .page-title-wrapper .page-title,
+.customer-account-forgotpassword .page-main .page-title-wrapper .page-title {
+    word-break: break-word;
+}

@@ -1,0 +1,21 @@
+/*
+ * @copyright Daniel Coull <d.coull@suttonsilver.co.uk>
+ */
+
+.mp-sitemap-listing {
+    -webkit-column-width: 250px;
+    -moz-column-width: 250px;
+    -o-column-width: 250px;
+    -ms-column-width: 250px;
+    column-width: 250px;
+    list-style-type: none;
+    padding-left: 15px;
+}
+
+#mageplaza-seo-html-sitemap h2 {
+    margin-left:15px;
+}
+
+.sitemap-index-index .page-title-wrapper {
+    margin-top:30px;
+}

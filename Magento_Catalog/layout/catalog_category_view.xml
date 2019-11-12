@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+  ~ @copyright Daniel Coull <d.coull@suttonsilver.co.uk>
+  -->
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <move element="page.main.title" destination="content" before="category.products"/>
+        <move element="category.view.container" destination="content" before="category.products" after="page.main.title"/>
+        <move element="category.description" destination="category.view.container" before="category.image" />
+        <referenceBlock name="category.product.addto.compare" remove="true" />
+        <referenceBlock name="category.product.addto.wishlist" remove="true" />
+        <referenceBlock name="category.product.type.details.renderers.configurable" remove="true"/>
+    </body>
+</page>
+

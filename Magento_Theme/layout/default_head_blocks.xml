@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="https://use.fontawesome.com/releases/v5.2.0/css/all.css" src_type="url"/>
+        <css src="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" src_type="url"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    </head>
+</page>

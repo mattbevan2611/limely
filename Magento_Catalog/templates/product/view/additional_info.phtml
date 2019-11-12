@@ -1,0 +1,30 @@
+<?php $product = $block->getProduct(); ?>
+
+<div class="additionalInfo">
+    <?php if ($product->getData('additional_info') != ''): ?>
+      <div class="row before-fa-truc">
+          <i class="fas fa-truck"></i>
+          <div class="content">
+             <?= $product->getData('additional_info'); ?>
+          </div>
+      </div>
+    <?php endif; ?>
+    <div class="row before-fa-check">
+      <i class="fas fa-check"></i>
+      <div class="content">
+        <?php if ($product->isAvailable()): ?>
+            <strong><?= __('AVAILABILITY: IN STOCK') ?></strong>
+        <?php else: ?>
+            <strong><?= __('AVAILABILITY: OUT OF STOCK') ?></strong>
+        <?php endif; ?>
+      </div>
+    </div>
+    <?php if ($product->getData('additional_info_2') != ''): ?>
+      <div class="row">
+        <i class="fas fa-bolt"></i>
+        <div class="content">
+          <?= $product->getData('additional_info_2'); ?>
+          </div>
+      </div>
+    <?php endif; ?>
+</div>

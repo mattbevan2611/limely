@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+  ~ @copyright Daniel Coull <d.coull@suttonsilver.co.uk>
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Contact Us</title>
+    </head>
+    <body>
+        <referenceContainer name="sidebar.main">
+            <container name="sidebar.main.menu" label="" htmlTag="div" htmlClass="sidebar-menu" >
+                <block class="Magento\Cms\Block\Block" name="fastest-outdoor-main-content-2-banner" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">contact_sidebar_menu</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Contact Us</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Contact Us</item>
+                    <item name="label" xsi:type="string">Contact Us</item>
+                </argument>
+            </action>
+        </referenceBlock>
+
+        <referenceContainer name="content">
+            <block class="Magento\Contact\Block\ContactForm"  name="contact.banner" before="contactForm" template="Magento_Contact::contactdetails.phtml"/>
+
+            <block class="Magento\Contact\Block\ContactForm" name="contactForm" template="Magento_Contact::form.phtml">
+                <container name="form.additional.info" label="Form Additional Info"/>
+            </block>
+        </referenceContainer>
+        <move element="page.main.title" destination="content" before="contact.banner"/>
+
+
+
+    </body>
+</page>

@@ -1,0 +1,22 @@
+<?php $_loggedin = $block->getLayout()->createBlock('Magento\Customer\Block\Account\AuthorizationLink')->isLoggedIn() ?>
+<?php if( $_loggedin ) : ?>
+  <div class="addToWishlist">
+      <a href="#" class="action towishlist addToWishlist" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($block->getProduct()) ?>'  data-action="add-to-wishlist">
+      <i class="far fa-heart"></i>
+    </a>
+  </div>
+  <script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "wishlist": {
+                    "component": "Magento_Wishlist/js/view/wishlist"
+                }
+            }
+        }
+    }
+}
+</script>
+
+<?php endif; ?>

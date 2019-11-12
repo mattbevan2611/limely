@@ -1,0 +1,23 @@
+<?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $storeInformation = $objectManager->create('Magento\Store\Model\Information');
+    $store = $objectManager->create('Magento\Store\Model\Store');
+    $storeInfo = $storeInformation->getStoreInformationObject($store);
+    $phone = $storeInfo->getPhone();
+?>
+
+<div class="needAssistance">
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <strong>Need assistance?</strong>
+                <strong>We're here for you</strong>
+                <p>Call to speak to one of our trained advisors!</p>
+            </div>
+            <div class="column">
+                <strong class="call-us">CALL US</strong>
+                <strong><?php echo $phone; ?></strong>
+            </div>
+        </div>
+    </div>
+</div>

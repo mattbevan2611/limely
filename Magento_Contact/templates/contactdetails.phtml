@@ -1,0 +1,39 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeInformation = $objectManager->create('Magento\Store\Model\Information');
+$store = $objectManager->create('Magento\Store\Model\Store');
+$storeInfo = $storeInformation->getStoreInformationObject($store);
+
+?>
+
+<div class="contact-details">
+    <div class="row">
+        <div class="icon phone">
+            <div class="content colContact">
+              <span>Customer Services:</span>
+              <strong><?= $storeInfo->getPhone(); ?></strong>
+            </div>
+
+            <div class="content colContact">
+                <span>Sales:</span>
+                <strong><?= $storeInfo->getPhone(); ?></strong>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="icon email">
+          <div class="content">
+            <span>Email Us:</span>
+            <strong><?= $store->getConfig('trans_email/ident_sales/email'); ?></strong>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="icon hours">
+          <div class="content">
+            <span>Opening Hours:</span>
+            <strong><?= $storeInfo->getHours(); ?></strong>
+          </div>
+        </div>
+    </div>
+</div>

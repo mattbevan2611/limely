@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="page.main.title" destination="product.info.main" before="product.info.price"/>
+        <move element="product.info.details" destination="product.info.main" after="product.info.options.wrapper"/>
+        <move element="product.info.stock.sku" destination="product.info.price" after="product.price.final"/>
+        <move element="product.info.sku" destination="product.info.main" after="page.main.title" before="product.info.price"/>
+        <move element="catalog.product.related" destination="main.content"/>
+        <move element="product.info.options.wrapper" destination="product.info.price"/>
+        <move element="additionalInfo" destination="product.info.main" after="product.info.price"/>
+        <move element="social" destination="product.info.media"/>
+
+
+        <referenceBlock name="product.info.main">
+            <!--vendor\module-catalog\Block\Product\View.php OR app\code\Magento\Catalog\Block\Product\View.php -->
+            <block class="Magento\Catalog\Block\Product\View" name="additionalInfo" template="product/view/additional_info.phtml">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Additional Information</argument>
+                </arguments>
+            </block>
+            <!--vendor\module-catalog\Block\Product\View.php OR app\code\Magento\Catalog\Block\Product\View.php -->
+            <block class="Magento\Catalog\Block\Product\View" name="social" template="Magento_Catalog::product/view/social.phtml"></block>
+
+        </referenceBlock>
+
+
+
+
+
+        <referenceBlock name="reviews.tab" remove="true" />
+        <referenceBlock name="product.info.review" remove="true" />
+        <referenceBlock name="view.addto.compare" remove="true" />
+        <referenceBlock name="product.info.mailto" remove="true" />
+
+        <referenceBlock name="related.product.addto" remove="true" />
+        <referenceBlock name="product.info.configurable.extra.catalog_inventory_stockqty_composite" remove="true" />
+        <referenceBlock name="smile.retaileroffer.info.store" remove="true"/>
+        <referenceBlock name="product.info.sku">
+            <arguments>
+                <argument name="at_call" xsi:type="string">getSku</argument>
+                <argument name="at_code" xsi:type="string">sku</argument>
+                <argument name="css_class" xsi:type="string">sku</argument>
+                <argument name="at_label" xsi:type="string">Product</argument>
+                <argument name="add_attribute" xsi:type="string">itemprop="sku"</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="product.info.details">
+            <referenceBlock name="product.info.description">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Description &amp; Guides</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="product.attributes">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Technical Specification</argument>
+                </arguments>
+            </referenceBlock>
+
+            <!--vendor\module-catalog\Block\Product\View.php OR app\code\Magento\Catalog\Block\Product\View.php -->
+            <block class="Magento\Catalog\Block\Product\View" name="shippinginfo.tab" as="shippingInformation" template="product/view/delivery_info.phtml" group="detailed_info" >
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Shipping Information</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

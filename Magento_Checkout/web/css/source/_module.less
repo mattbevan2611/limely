@@ -1,0 +1,86 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+@import 'module/_cart.less';
+@import 'module/_minicart.less';
+@import 'module/_checkout.less';
+
+
+.gift-options .actions-toolbar .secondary .action {
+  background: @secondary__color;
+  color: @color-white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Arial', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  padding: 7px 15px;
+  font-size: 1.4rem;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+@media (max-width: 768px) {
+  .opc-estimated-wrapper {
+    display: none;
+  }
+  .page-layout-checkout {
+    .header {
+      &.content {
+        height: 80px;
+      }
+    }
+  }
+
+  .checkout-index-index .page-main #shipping-new-address-form {
+    padding-bottom: 30px;
+  }
+
+  .checkout-index-index .page-main .step-title {
+    color: #4F4F4F;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29px;
+    text-align: left;
+    border-bottom: 0 none;
+    padding-bottom: 20px;
+    padding-top: 10px;
+  }
+
+
+    .checkout-onepage-success .page-main > .page-title-wrapper .page-title {
+    padding: 20px;
+  }
+
+  .checkout-onepage-success .page-main > .page-title-wrapper .page-title span {
+    font-size: 28px;
+  }
+
+  .checkout-index-index .page-main .checkout-container {
+    width: ~'calc(100% - 30px)';
+    box-sizing: border-box;
+  }
+}
+
+.checkout-index-index .copyright .inner span {
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.new-address-popup {
+  button {
+    margin-bottom: 20px;
+    margin-right: 0;
+    background: @secondary__color;
+    color: @color-white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    padding: 7px 15px;
+    font-size: 1.4rem;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 0;
+    padding: 15px 20px;
+  }
+}
